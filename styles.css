@@ -204,15 +204,18 @@ body {
 }
 
 .btn-outline {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.15);
     color: white;
     border: 2px solid white;
+    backdrop-filter: blur(8px);
 }
 
 .btn-outline:hover {
-    background: white;
-    color: var(--primary);
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    border-color: white;
     transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn-small {
@@ -870,8 +873,10 @@ body {
     margin-left: 0;
     margin-right: auto;
     width: calc(50% - 2rem);
-    text-align: right;
-    padding-right: 2rem;
+    text-align: left;
+    padding-left: 2rem;
+    border-left: 3px solid var(--secondary);
+    border-right: none;
 }
 
 .timeline-item:nth-child(even) .timeline-content {
@@ -959,6 +964,14 @@ body {
     background: linear-gradient(135deg, #0066cc 0%, #00a8cc 100%);
     color: white;
     text-align: center;
+}
+
+.contact .section-title {
+    color: white;
+}
+
+.contact .section-title::after {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
 }
 
 .contact-content p {
