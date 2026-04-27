@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -362,7 +363,7 @@ def maybe_blend_seam(image: np.ndarray) -> tuple[np.ndarray, float]:
 
 def resize_output(image: np.ndarray, max_width: int) -> np.ndarray:
     height, width = image.shape[:2]
-    if width <= max_width:
+    if max_width <= 0 or width <= max_width:
         return image
 
     scale = max_width / width
@@ -400,7 +401,18 @@ def process_scene(scene: Scene, output_dir: Path, max_width: int, jpeg_quality: 
     final_image = resize_output(prepared, max_width=max_width)
 
     output_path = output_dir / scene.output_name
-    write_image(output_path, final_image, jpeg_quality=jpeg_quality)
+    passthrough_copy = (
+        len(scene.files) == 1
+        and final_image.shape == images[0].shape
+        and np.array_equal(final_image, images[0])
+        and output_path.suffix.lower() == scene.files[0].suffix.lower()
+    )
+
+    if passthrough_copy:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(scene.files[0], output_path)
+    else:
+        write_image(output_path, final_image, jpeg_quality=jpeg_quality)
 
     final_height, final_width = final_image.shape[:2]
     metadata = {
@@ -419,6 +431,7 @@ def process_scene(scene: Scene, output_dir: Path, max_width: int, jpeg_quality: 
         "seam_vertical_shift_px": seam_shift,
         "seam_score_after_alignment": float(aligned_score),
         "seam_score_after_blend": float(prepared_score),
+        "passthrough_copy": passthrough_copy,
         "source_size": {"width": int(source_width), "height": int(source_height)},
         "output_size": {"width": int(final_width), "height": int(final_height)},
         "output_file": output_path.as_posix(),
@@ -435,8 +448,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--input-dir", default="Images", help="Folder with source images or per-scene subfolders.")
     parser.add_argument("--output-dir", default="360_Images", help="Folder for processed panoramas.")
-    parser.add_argument("--max-width", type=int, default=1280, help="Maximum output width in pixels.")
-    parser.add_argument("--jpeg-quality", type=int, default=86, help="JPEG quality for .jpg/.jpeg outputs.")
+    parser.add_argument("--max-width", type=int, default=0, help="Maximum output width in pixels. Use 0 to keep source width.")
+    parser.add_argument("--jpeg-quality", type=int, default=92, help="JPEG quality for .jpg/.jpeg outputs when re-encoding is needed.")
     return parser.parse_args()
 
 

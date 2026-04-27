@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T16:42:25.515694+00:00",
+  "generated_at": "2026-04-27T16:55:05.445384+00:00",
   "items": [
     {
       "scene": "panorama-360",
@@ -24,13 +24,14 @@
       "seam_vertical_shift_px": 0,
       "seam_score_after_alignment": 10.982411450752062,
       "seam_score_after_blend": 10.982411450752062,
+      "passthrough_copy": true,
       "source_size": {
         "width": 1600,
         "height": 458
       },
       "output_size": {
-        "width": 1280,
-        "height": 366
+        "width": 1600,
+        "height": 458
       },
       "output_file": "360_Images/panorama-360.jpeg"
     }
