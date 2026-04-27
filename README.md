@@ -98,8 +98,9 @@ medha1305.github.io/
 
 ### Local Development
 1. Clone the repository
-2. Open `index.html` in your web browser
-3. All files are self-contained (no build process needed)
+2. Run `python preprocess_panorama.py` to build the prepared panorama into `360_Images/`
+ 3. Open `index.html` in your web browser
+ 4. All files are self-contained (no build process needed)
 
 ### GitHub Pages
 The website is automatically deployed to:

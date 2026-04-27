@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-04-27T16:42:25.515694+00:00",
+  "items": [
+    {
+      "scene": "panorama-360",
+      "source_files": [
+        "Images/panorama-360.jpeg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 458
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 3,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 10.982411450752062,
+      "seam_score_after_loop_close": 10.982411450752062,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 10.982411450752062,
+      "seam_score_after_blend": 10.982411450752062,
+      "source_size": {
+        "width": 1600,
+        "height": 458
+      },
+      "output_size": {
+        "width": 1280,
+        "height": 366
+      },
+      "output_file": "360_Images/panorama-360.jpeg"
+    }
+  ]
+}
