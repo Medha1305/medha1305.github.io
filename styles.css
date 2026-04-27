@@ -695,22 +695,44 @@ body {
 }
 
 .panorama-viewer {
-    width: min(100%, 18rem);
-    aspect-ratio: 3 / 4;
-    background: #000000;
-    border-radius: 24px;
+    width: min(100%, 440px);
+    min-height: 560px;
+    max-height: min(84vh, 780px);
+    aspect-ratio: 9 / 16;
+    background:
+        radial-gradient(circle at 50% 22%, rgba(48, 138, 208, 0.22), transparent 48%),
+        linear-gradient(160deg, #02111d 0%, #06233c 55%, #0a3455 100%);
+    border-radius: 26px;
     overflow: hidden;
     position: relative;
     cursor: grab;
     touch-action: none;
     isolation: isolate;
     border: 1px solid rgba(0, 102, 204, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 16px 36px rgba(6, 35, 60, 0.18);
 }
 
 .panorama-viewer:fullscreen {
-    width: min(100vw, calc((100vh - 2rem) * 3 / 4));
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    aspect-ratio: auto;
     max-width: none;
     margin: auto;
+    border-radius: 0;
+}
+
+.panorama-viewer:focus-visible {
+    outline: none;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 0 0 4px rgba(0, 168, 204, 0.22),
+        0 18px 38px rgba(6, 35, 60, 0.2);
 }
 
 .panorama-viewer.is-dragging,
@@ -718,11 +740,13 @@ body {
     cursor: grabbing;
 }
 
-.panorama-viewer.is-loading .panorama-canvas {
+.panorama-viewer.is-loading .panorama-canvas,
+.panorama-viewer.is-loading .panorama-fallback-image {
     opacity: 0.08;
 }
 
-.panorama-canvas {
+.panorama-canvas,
+.panorama-fallback-image {
     display: block;
     position: absolute;
     inset: 0;
@@ -733,6 +757,14 @@ body {
     transition: opacity 0.3s ease;
 }
 
+.panorama-canvas {
+    object-fit: fill;
+}
+
+.panorama-fallback-image {
+    object-fit: cover;
+}
+
 .panorama-loading {
     position: absolute;
     inset: 0;
@@ -740,9 +772,10 @@ body {
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(240, 249, 255, 0.94) 100%);
+    background: linear-gradient(135deg, rgba(4, 21, 36, 0.48) 0%, rgba(6, 33, 56, 0.7) 100%);
     text-align: center;
     z-index: 2;
+    backdrop-filter: blur(6px);
 }
 
 .panorama-viewer.is-ready .panorama-loading {
@@ -1121,6 +1154,18 @@ body {
 
     .panorama-header {
         flex-direction: column;
+    }
+
+    .panorama-viewer {
+        width: min(100%, 400px);
+        min-height: 460px;
+        max-height: 78vh;
+        aspect-ratio: 9 / 14;
+    }
+
+    .panorama-viewer:fullscreen {
+        width: 100vw;
+        height: 100vh;
     }
 
     .skills-grid,
