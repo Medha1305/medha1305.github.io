@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | Medha</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="research-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html#home" class="logo">
+                <span class="logo-icon">&#128167;</span>
+                <span>Medha</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="#research-page" class="nav-link active" data-section="research-page">Research</a></li>
+                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="research-page" class="page-hero research-page-hero">
+        <div class="container page-hero-layout">
+            <div class="page-hero-copy">
+                <p class="section-kicker">Featured Research</p>
+                <h1>Monitoring Offline Ponds Through the Current Photo Sphere</h1>
+                <p class="page-hero-description">This page gives the project its own home, with the latest field panorama and a concise overview of the monitoring and modelling work behind it.</p>
+                <div class="hero-cta">
+                    <a href="#research-details" class="btn btn-primary">Explore The Project</a>
+                    <a href="../index.html#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+
+            <aside class="page-hero-aside">
+                <div class="page-hero-card">
+                    <p class="page-hero-label">Current Photo Sphere</p>
+                    <h2>Interactive field context from the live site</h2>
+                    <p>The panorama below uses the current image already stored in the repository, so visitors can inspect the offline pond setting directly from this dedicated page.</p>
+                    <ul class="page-hero-points">
+                        <li>Built from the current prepared panorama image already in the site</li>
+                        <li>Works with drag, zoom, keyboard, and fullscreen controls</li>
+                        <li>Matches the main portfolio design for a seamless transition</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section class="research research-page-section">
+        <div class="container" id="research-details">
+            <div class="research-page-intro">
+                <p class="section-kicker">Project Overview</p>
+                <h2 class="section-title">Field Monitoring and 360&deg; Site View</h2>
+                <p>This PhD project examines how offline ponds and related catchment interventions reduce flood peaks, influence flow pathways, and support resilient landscape-scale flood management. The viewer on this page presents the current field photo sphere so the site context is visible alongside the research summary.</p>
+            </div>
+
+            <div class="research-content">
+                <div class="research-info">
+                    <h3>Monitoring of Offline Ponds</h3>
+                    <p class="research-date">PhD Research - Newcastle University (2023-Present)</p>
+
+                    <p>The research combines field observation, monitoring infrastructure, and hydrodynamic modelling to understand how nature-based flood management performs under real catchment conditions. A 13-sensor network supports evidence-led analysis of flow depth, rainfall, and velocity, while CITYCAT simulations help evaluate the wider hydraulic response.</p>
+
+                    <div class="research-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">&#128205;</span>
+                            <div>
+                                <h4>Monitoring Network</h4>
+                                <p>13 sensors distributed across the catchment for field-based evidence collection.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">&#127793;</span>
+                            <div>
+                                <h4>Nature-Based Solutions</h4>
+                                <p>Assessment of offline ponds as practical interventions for flood attenuation.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">&#128187;</span>
+                            <div>
+                                <h4>Hydrodynamic Modelling</h4>
+                                <p>CITYCAT scenarios connect observed field conditions to flood-management performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panorama-section">
+                    <div class="panorama-header">
+                        <div>
+                            <p class="panorama-eyebrow">360&deg; Panorama</p>
+                            <h4>Current field photo sphere</h4>
+                        </div>
+                        <span class="panorama-status">Live site context</span>
+                    </div>
+                    <p class="panorama-caption">Explore the current field view in 360 degrees. Drag to look around the pond setting, zoom for more detail, and use fullscreen when you want a wider sense of the monitoring environment.</p>
+                    <div class="panorama-frame">
+                        <div class="panorama-viewer" id="panorama" data-panorama-src="../360_Images/panorama-360.jpeg">
+                            <div class="panorama-loading">
+                                <span class="panorama-loading-label">Loading 360&deg; panorama...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panorama-controls">
+                        <p>Use drag, touch, or arrow keys to move around the sphere. Mouse wheel, pinch, and the zoom buttons all work here as well, and auto-rotation resumes after a brief pause.</p>
+                        <div class="panorama-actions">
+                            <button id="autoRotateBtn" type="button" class="btn btn-small" aria-pressed="true">Pause Rotation</button>
+                            <button id="zoomInBtn" type="button" class="btn btn-small">Zoom In</button>
+                            <button id="zoomOutBtn" type="button" class="btn btn-small">Zoom Out</button>
+                            <button id="resetBtn" type="button" class="btn btn-small">Reset View</button>
+                            <button id="fullscreenBtn" type="button" class="btn btn-small">Fullscreen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-grid research-page-grid">
+                <article class="project-card">
+                    <h4>Current Site Capture</h4>
+                    <p>The panorama on this page is wired to the current prepared photo sphere already included in the site, so the dedicated page stays aligned with the latest stored field view.</p>
+                </article>
+                <article class="project-card">
+                    <h4>Why This View Matters</h4>
+                    <p>Seeing the pond setting spatially helps visitors understand channel position, landscape form, and the field context around the monitoring network more quickly than text alone.</p>
+                </article>
+                <article class="project-card">
+                    <h4>Research Workflow</h4>
+                    <p>Field measurements, QA/QC, event interpretation, and CITYCAT scenario testing come together to assess how catchment-scale interventions perform during rainfall-driven flood events.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Medha | Hydrology & Flood Management Research</p>
+            <p>Newcastle University, UK</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

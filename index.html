@@ -10,15 +10,15 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
+            <a href="#home" class="logo">
                 <span class="logo-icon">&#128167;</span>
                 <span>Medha</span>
-            </div>
+            </a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="Research/" class="nav-link" data-section="research">Research</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -258,6 +258,11 @@
 
                     <p>This groundbreaking project evaluates nature-based flood management solutions through comprehensive field monitoring and hydrodynamic modeling. The interactive panoramic view below showcases the actual research site where we've installed 13 sensors to collect real-time data on flow depth, velocity, and rainfall patterns.</p>
 
+                    <div class="research-page-entry">
+                        <p>There is now a dedicated research page for this project with the current photo sphere and focused project context.</p>
+                        <a href="Research/" class="btn btn-primary">Open Research Page</a>
+                    </div>
+
                     <div class="research-highlights">
                         <div class="highlight-item">
                             <span class="highlight-icon">&#128205;</span>
@@ -294,7 +299,7 @@
                     </div>
                     <p class="panorama-caption">Explore the field site in an interactive 360&deg; view. Drag to look around the offline pond setting, inspect the channel edge, and zoom in for more detail on the monitoring context.</p>
                     <div class="panorama-frame">
-                        <div class="panorama-viewer" id="panorama">
+                        <div class="panorama-viewer" id="panorama" data-panorama-src="360_Images/panorama-360.jpeg">
                             <div class="panorama-loading">
                                 <span class="panorama-loading-label">Loading 360&deg; panorama...</span>
                             </div>

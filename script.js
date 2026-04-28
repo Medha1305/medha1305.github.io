@@ -25,10 +25,23 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 // Update Active Navigation on Scroll
 // ===========================
 
-window.addEventListener("scroll", () => {
+function getNavSectionTarget(link) {
+    if (!link) {
+        return "";
+    }
+
+    if (link.dataset.section) {
+        return link.dataset.section;
+    }
+
+    const href = link.getAttribute("href") || "";
+    return href.startsWith("#") ? href.slice(1) : "";
+}
+
+function updateActiveNavigation() {
     let current = "";
 
-    document.querySelectorAll("section").forEach((section) => {
+    document.querySelectorAll("section[id]").forEach((section) => {
         if (window.scrollY >= section.offsetTop - 200) {
             current = section.getAttribute("id");
         }
@@ -36,11 +49,14 @@ window.addEventListener("scroll", () => {
 
     document.querySelectorAll(".nav-link").forEach((link) => {
         link.classList.remove("active");
-        if (link.getAttribute("href") === `#${current}`) {
+        if (getNavSectionTarget(link) === current) {
             link.classList.add("active");
         }
     });
-});
+}
+
+window.addEventListener("scroll", updateActiveNavigation);
+window.addEventListener("load", updateActiveNavigation);
 
 // ===========================
 // Mobile Menu Toggle
@@ -821,7 +837,9 @@ class PanoramaViewer {
 // ===========================
 
 document.addEventListener("DOMContentLoaded", () => {
-    const viewer = new PanoramaViewer("panorama", "360_Images/panorama-360.jpeg");
+    const panoramaContainer = document.getElementById("panorama");
+    const panoramaSource = panoramaContainer?.dataset.panoramaSrc || "360_Images/panorama-360.jpeg";
+    const viewer = new PanoramaViewer("panorama", panoramaSource);
 
     const autoRotateBtn = document.getElementById("autoRotateBtn");
     if (autoRotateBtn) {
