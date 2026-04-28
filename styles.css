@@ -1036,13 +1036,6 @@ body {
     text-align: justify;
 }
 
-.research-page .panorama-viewer {
-    width: min(100%, 760px);
-    min-height: 430px;
-    max-height: min(76vh, 640px);
-    aspect-ratio: 16 / 10;
-}
-
 .research-page-grid {
     margin-top: 3rem;
 }
@@ -1331,13 +1324,6 @@ body {
         min-height: 460px;
         max-height: 78vh;
         aspect-ratio: 9 / 14;
-    }
-
-    .research-page .panorama-viewer {
-        width: 100%;
-        min-height: 360px;
-        max-height: 68vh;
-        aspect-ratio: 16 / 11;
     }
 
     .panorama-viewer:fullscreen {
