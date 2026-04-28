@@ -839,6 +839,29 @@ body {
     flex-wrap: wrap;
 }
 
+.panorama-actions .btn {
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--primary);
+    border: 1px solid rgba(0, 102, 204, 0.14);
+    box-shadow: 0 10px 24px rgba(17, 103, 168, 0.08);
+}
+
+.panorama-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px rgba(17, 103, 168, 0.14);
+}
+
+.panorama-actions .btn:focus-visible {
+    outline: 3px solid rgba(0, 119, 200, 0.28);
+    outline-offset: 2px;
+}
+
+.panorama-actions .btn[aria-pressed="true"] {
+    background: linear-gradient(135deg, #0051a8 0%, #0077c8 100%);
+    color: white;
+    border-color: transparent;
+}
+
 .other-projects {
     margin-top: 4rem;
 }

@@ -114,6 +114,13 @@ class PanoramaViewer {
         this.pinchStartDistance = 0;
         this.pinchStartFov = this.verticalFov;
         this.renderQueued = false;
+        this.autoRotateButton = null;
+        this.autoRotateEnabled = true;
+        this.autoRotateSpeed = 5 * DEG_TO_RAD;
+        this.autoRotateResumeDelay = 2800;
+        this.autoRotateResumeAt = 0;
+        this.autoRotateFrameId = 0;
+        this.autoRotateLastFrameTime = 0;
 
         this.handlePointerDown = this.onPointerDown.bind(this);
         this.handlePointerMove = this.onPointerMove.bind(this);
@@ -183,6 +190,7 @@ class PanoramaViewer {
             this.container.classList.add("is-ready");
             this.refreshMetrics();
             this.requestRender();
+            this.startAutoRotateLoop();
         });
 
         image.addEventListener("error", () => {
@@ -406,6 +414,7 @@ class PanoramaViewer {
         }
 
         event.preventDefault();
+        this.pauseAutoRotateTemporarily();
         this.container.focus({ preventScroll: true });
         this.activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
         this.container.setPointerCapture?.(event.pointerId);
@@ -507,6 +516,7 @@ class PanoramaViewer {
         }
 
         event.preventDefault();
+        this.pauseAutoRotateTemporarily();
         this.verticalFov = this.clampFov(this.verticalFov + (event.deltaY * this.wheelZoomFactor));
         this.pitch = this.clampPitch(this.pitch);
         this.requestRender();
@@ -517,6 +527,7 @@ class PanoramaViewer {
             return;
         }
 
+        this.pauseAutoRotateTemporarily();
         const step = 4 * DEG_TO_RAD;
 
         switch (event.key) {
@@ -569,6 +580,7 @@ class PanoramaViewer {
             return;
         }
 
+        this.pauseAutoRotateTemporarily();
         this.verticalFov = this.clampFov(this.verticalFov - this.buttonZoomStep);
         this.pitch = this.clampPitch(this.pitch);
         this.requestRender();
@@ -579,6 +591,7 @@ class PanoramaViewer {
             return;
         }
 
+        this.pauseAutoRotateTemporarily();
         this.verticalFov = this.clampFov(this.verticalFov + this.buttonZoomStep);
         this.pitch = this.clampPitch(this.pitch);
         this.requestRender();
@@ -621,6 +634,77 @@ class PanoramaViewer {
         }
 
         return wrappedAngle;
+    }
+
+    startAutoRotateLoop() {
+        if (
+            !this.initialized ||
+            this.usingFallbackImage ||
+            !this.autoRotateEnabled ||
+            this.autoRotateFrameId
+        ) {
+            return;
+        }
+
+        this.autoRotateLastFrameTime = 0;
+
+        const tick = (timestamp) => {
+            if (!this.initialized || this.usingFallbackImage || !this.autoRotateEnabled) {
+                this.autoRotateFrameId = 0;
+                this.autoRotateLastFrameTime = 0;
+                return;
+            }
+
+            if (!this.autoRotateLastFrameTime) {
+                this.autoRotateLastFrameTime = timestamp;
+            }
+
+            const deltaSeconds = Math.min((timestamp - this.autoRotateLastFrameTime) / 1000, 0.05);
+            this.autoRotateLastFrameTime = timestamp;
+            const shouldRotate = !document.hidden &&
+                this.activePointers.size === 0 &&
+                timestamp >= this.autoRotateResumeAt;
+
+            if (shouldRotate && deltaSeconds > 0) {
+                this.yaw = this.wrapYaw(this.yaw + (deltaSeconds * this.autoRotateSpeed));
+                this.render();
+            }
+
+            this.autoRotateFrameId = window.requestAnimationFrame(tick);
+        };
+
+        this.autoRotateFrameId = window.requestAnimationFrame(tick);
+    }
+
+    stopAutoRotateLoop() {
+        if (this.autoRotateFrameId) {
+            window.cancelAnimationFrame(this.autoRotateFrameId);
+        }
+
+        this.autoRotateFrameId = 0;
+        this.autoRotateLastFrameTime = 0;
+    }
+
+    pauseAutoRotateTemporarily(delay = this.autoRotateResumeDelay) {
+        if (!this.autoRotateEnabled) {
+            return;
+        }
+
+        this.autoRotateResumeAt = performance.now() + delay;
+    }
+
+    setAutoRotateButton(button) {
+        this.autoRotateButton = button || null;
+        this.updateAutoRotateButton();
+    }
+
+    updateAutoRotateButton() {
+        if (!this.autoRotateButton) {
+            return;
+        }
+
+        this.autoRotateButton.textContent = this.autoRotateEnabled ? "Pause Rotation" : "Start Rotation";
+        this.autoRotateButton.setAttribute("aria-pressed", this.autoRotateEnabled ? "true" : "false");
     }
 
     requestRender() {
@@ -687,6 +771,7 @@ class PanoramaViewer {
 
     showError(message) {
         this.initialized = false;
+        this.stopAutoRotateLoop();
         this.container.classList.remove("is-loading", "is-ready");
         this.container.classList.add("is-error");
 
@@ -700,9 +785,24 @@ class PanoramaViewer {
             return;
         }
 
+        this.pauseAutoRotateTemporarily();
         this.yaw = this.defaultYaw;
         this.pitch = this.defaultPitch;
         this.verticalFov = this.clampFov(this.defaultVerticalFov);
+        this.requestRender();
+    }
+
+    toggleAutoRotate() {
+        this.autoRotateEnabled = !this.autoRotateEnabled;
+
+        if (this.autoRotateEnabled) {
+            this.autoRotateResumeAt = performance.now() + 150;
+            this.startAutoRotateLoop();
+        } else {
+            this.stopAutoRotateLoop();
+        }
+
+        this.updateAutoRotateButton();
         this.requestRender();
     }
 
@@ -722,6 +822,15 @@ class PanoramaViewer {
 
 document.addEventListener("DOMContentLoaded", () => {
     const viewer = new PanoramaViewer("panorama", "360_Images/panorama-360.jpeg");
+
+    const autoRotateBtn = document.getElementById("autoRotateBtn");
+    if (autoRotateBtn) {
+        viewer.setAutoRotateButton(autoRotateBtn);
+        autoRotateBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            viewer.toggleAutoRotate();
+        });
+    }
 
     const resetBtn = document.getElementById("resetBtn");
     if (resetBtn) {
