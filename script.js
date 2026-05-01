@@ -775,7 +775,18 @@ class PanoramaViewer {
             return;
         }
 
-        this.autoRotateButton.textContent = this.autoRotateEnabled ? "Pause Rotation" : "Start Rotation";
+        const buttonLabel = this.autoRotateEnabled ? "Pause Rotation" : "Start Rotation";
+
+        if (this.autoRotateButton.dataset.iconOnly === "true") {
+            this.autoRotateButton.innerHTML = this.autoRotateEnabled
+                ? '<svg class="research-control-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1.2" fill="currentColor" stroke="none"></rect><rect x="13.5" y="5" width="3.5" height="14" rx="1.2" fill="currentColor" stroke="none"></rect></svg>'
+                : '<svg class="research-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6.5v11l8.5-5.5z" fill="currentColor" stroke="none"></path></svg>';
+            this.autoRotateButton.setAttribute("aria-label", buttonLabel);
+            this.autoRotateButton.setAttribute("title", buttonLabel);
+        } else {
+            this.autoRotateButton.textContent = buttonLabel;
+        }
+
         this.autoRotateButton.setAttribute("aria-pressed", this.autoRotateEnabled ? "true" : "false");
     }
 
@@ -888,6 +899,8 @@ class PanoramaViewer {
         document.exitFullscreen();
     }
 }
+
+window.PanoramaViewer = PanoramaViewer;
 
 function setTextContentById(id, value) {
     const element = document.getElementById(id);
