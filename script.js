@@ -90,6 +90,8 @@ class PanoramaViewer {
         this.initialized = false;
         this.usingFallbackImage = false;
         this.image = null;
+        this.fallbackImage = null;
+        this.loadCounter = 0;
         this.canvas = null;
         this.gl = null;
         this.program = null;
@@ -186,6 +188,10 @@ class PanoramaViewer {
         this.image = image;
 
         image.addEventListener("load", () => {
+            if (image.dataset.loadCounter !== String(this.loadCounter)) {
+                return;
+            }
+
             this.sourceWidth = image.naturalWidth;
             this.sourceHeight = image.naturalHeight;
             this.cylinderHeight = this.getCylinderHeight();
@@ -202,7 +208,7 @@ class PanoramaViewer {
             }
 
             this.initialized = true;
-            this.container.classList.remove("is-loading", "is-error");
+            this.container.classList.remove("is-loading", "is-error", "is-fallback");
             this.container.classList.add("is-ready");
             this.refreshMetrics();
             this.requestRender();
@@ -210,6 +216,10 @@ class PanoramaViewer {
         });
 
         image.addEventListener("error", () => {
+            if (image.dataset.loadCounter !== String(this.loadCounter)) {
+                return;
+            }
+
             this.showError("Panorama image could not be loaded.");
         });
 
@@ -222,7 +232,53 @@ class PanoramaViewer {
         window.addEventListener("resize", this.handleResize);
         document.addEventListener("fullscreenchange", this.handleResize);
 
-        image.src = this.imagePath;
+        this.loadImage(this.imagePath);
+    }
+
+    setLoadingState() {
+        this.initialized = false;
+        this.stopAutoRotateLoop();
+        this.sourceWidth = 0;
+        this.sourceHeight = 0;
+        this.defaultPitch = 0;
+        this.yaw = this.defaultYaw;
+        this.pitch = this.defaultPitch;
+        this.defaultVerticalFov = 52 * DEG_TO_RAD;
+        this.verticalFov = this.defaultVerticalFov;
+        this.container.classList.remove("is-ready", "is-error", "is-fallback");
+        this.container.classList.add("is-loading");
+
+        if (this.loadingLabel) {
+            this.loadingLabel.textContent = "Loading 360\u00b0 panorama...";
+        }
+    }
+
+    loadImage(imagePath) {
+        if (!this.image) {
+            return;
+        }
+
+        this.imagePath = imagePath;
+        this.loadCounter += 1;
+        this.image.dataset.loadCounter = String(this.loadCounter);
+        this.setLoadingState();
+        this.image.src = imagePath;
+    }
+
+    setImage(imagePath) {
+        if (!imagePath || imagePath === this.imagePath) {
+            return;
+        }
+
+        if (this.usingFallbackImage && this.fallbackImage) {
+            this.imagePath = imagePath;
+            this.setLoadingState();
+            this.initialized = true;
+            this.fallbackImage.src = imagePath;
+            return;
+        }
+
+        this.loadImage(imagePath);
     }
 
     initializeGlProgram() {
@@ -771,6 +827,7 @@ class PanoramaViewer {
         fallbackImage.className = "panorama-fallback-image";
         fallbackImage.alt = "Panoramic view of the field site";
         fallbackImage.draggable = false;
+        this.fallbackImage = fallbackImage;
 
         fallbackImage.addEventListener("load", () => {
             this.container.classList.remove("is-loading", "is-error");
@@ -832,14 +889,81 @@ class PanoramaViewer {
     }
 }
 
+function setTextContentById(id, value) {
+    const element = document.getElementById(id);
+
+    if (element && value) {
+        element.textContent = value;
+    }
+}
+
+function initializePanoramaScenePicker(viewer) {
+    const sceneButtons = Array.from(document.querySelectorAll("[data-panorama-scene]"));
+    if (!sceneButtons.length || !viewer) {
+        return;
+    }
+
+    const sceneLink = document.getElementById("panoramaSceneLink");
+
+    const selectScene = (button) => {
+        const imagePath = button.dataset.panoramaSrc;
+
+        if (imagePath && typeof viewer.setImage === "function") {
+            viewer.setImage(imagePath);
+        }
+
+        sceneButtons.forEach((sceneButton) => {
+            const isSelected = sceneButton === button;
+            sceneButton.classList.toggle("is-active", isSelected);
+            sceneButton.setAttribute("aria-pressed", isSelected ? "true" : "false");
+        });
+
+        const title = button.dataset.title || "";
+        const pond = button.dataset.pond || "";
+        const location = button.dataset.location || "";
+        const direction = button.dataset.direction || "";
+        const file = button.dataset.file || "";
+        const size = button.dataset.size || "";
+        const detail = button.dataset.detail || "";
+
+        setTextContentById("panoramaSceneTitle", title);
+        setTextContentById("panoramaSceneStatus", pond);
+        setTextContentById("panoramaScenePond", pond);
+        setTextContentById("panoramaSceneLocation", location);
+        setTextContentById("panoramaSceneDescription", detail);
+        setTextContentById("panoramaSceneDetail", detail);
+        setTextContentById("panoramaSceneDirection", direction);
+        setTextContentById("panoramaSceneFile", file);
+        setTextContentById("panoramaSceneSize", size);
+
+        if (sceneLink && imagePath) {
+            sceneLink.href = imagePath;
+        }
+    };
+
+    sceneButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            selectScene(button);
+        });
+    });
+
+    const initialScene = sceneButtons.find((button) => button.classList.contains("is-active")) || sceneButtons[0];
+    selectScene(initialScene);
+}
+
 // ===========================
 // Initialize Panorama Viewer
 // ===========================
 
 document.addEventListener("DOMContentLoaded", () => {
     const panoramaContainer = document.getElementById("panorama");
+    if (!panoramaContainer) {
+        return;
+    }
+
     const panoramaSource = panoramaContainer?.dataset.panoramaSrc || "360_Images/panorama-360.jpeg";
     const viewer = new PanoramaViewer("panorama", panoramaSource);
+    initializePanoramaScenePicker(viewer);
 
     const autoRotateBtn = document.getElementById("autoRotateBtn");
     if (autoRotateBtn) {

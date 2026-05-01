@@ -25,7 +25,7 @@ def smooth_step(values: np.ndarray) -> np.ndarray:
     return values * values * (3.0 - (2.0 * values))
 
 
-def discover_scenes(input_dir: Path) -> list[Scene]:
+def discover_scenes(input_dir: Path, separate_root_images: bool = False) -> list[Scene]:
     root_images = sorted(
         path for path in input_dir.iterdir() if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS
     )
@@ -46,7 +46,16 @@ def discover_scenes(input_dir: Path) -> list[Scene]:
             )
         )
 
-    if root_images:
+    if root_images and separate_root_images:
+        for image_path in root_images:
+            scenes.append(
+                Scene(
+                    name=image_path.stem,
+                    files=[image_path],
+                    output_name=image_path.name,
+                )
+            )
+    elif root_images:
         if len(root_images) == 1:
             only_image = root_images[0]
             scenes.append(
@@ -450,6 +459,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", default="360_Images", help="Folder for processed panoramas.")
     parser.add_argument("--max-width", type=int, default=0, help="Maximum output width in pixels. Use 0 to keep source width.")
     parser.add_argument("--jpeg-quality", type=int, default=92, help="JPEG quality for .jpg/.jpeg outputs when re-encoding is needed.")
+    parser.add_argument(
+        "--separate-root-images",
+        action="store_true",
+        help="Process each image directly inside the input folder as its own scene.",
+    )
     return parser.parse_args()
 
 
@@ -461,7 +475,7 @@ def main() -> int:
     if not input_dir.exists():
         raise SystemExit(f"Input directory does not exist: {input_dir}")
 
-    scenes = discover_scenes(input_dir)
+    scenes = discover_scenes(input_dir, separate_root_images=args.separate_root_images)
     if not scenes:
         raise SystemExit(f"No source images found in: {input_dir}")
 

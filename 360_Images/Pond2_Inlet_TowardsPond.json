@@ -1,0 +1,34 @@
+{
+  "scene": "Pond2_Inlet_TowardsPond",
+  "source_files": [
+    "Images/Pond2_Inlet_TowardsPond.jpg"
+  ],
+  "stitch_mode": "single",
+  "crop_box": {
+    "x": 0,
+    "y": 0,
+    "width": 5120,
+    "height": 1514
+  },
+  "removed_overlap_px": 0,
+  "overlap_vertical_shift_px": 0,
+  "loop_close_applied": false,
+  "feature_match_count": 4,
+  "feature_inlier_count": 0,
+  "feature_confidence": 0.0,
+  "seam_score_before_loop_close": 20.242679436371642,
+  "seam_score_after_loop_close": 20.242679436371642,
+  "seam_vertical_shift_px": 0,
+  "seam_score_after_alignment": 20.242679436371642,
+  "seam_score_after_blend": 20.242679436371642,
+  "passthrough_copy": true,
+  "source_size": {
+    "width": 5120,
+    "height": 1514
+  },
+  "output_size": {
+    "width": 5120,
+    "height": 1514
+  },
+  "output_file": "360_Images/Pond2_Inlet_TowardsPond.jpg"
+}

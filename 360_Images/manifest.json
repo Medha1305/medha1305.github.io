@@ -1,6 +1,74 @@
 {
-  "generated_at": "2026-04-27T16:55:05.445384+00:00",
+  "generated_at": "2026-05-01T15:07:34.260614+00:00",
   "items": [
+    {
+      "scene": "P1_Inlet",
+      "source_files": [
+        "Images/P1_Inlet.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1520
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 6,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 12.865323464912281,
+      "seam_score_after_loop_close": 12.865323464912281,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 12.865323464912281,
+      "seam_score_after_blend": 12.865323464912281,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1520
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1520
+      },
+      "output_file": "360_Images/P1_Inlet.jpg"
+    },
+    {
+      "scene": "P2_Inlet",
+      "source_files": [
+        "Images/P2_Inlet.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1448
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 8,
+      "feature_inlier_count": 2,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 21.621201657458563,
+      "seam_score_after_loop_close": 21.621201657458563,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 21.621201657458563,
+      "seam_score_after_blend": 21.621201657458563,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1448
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1448
+      },
+      "output_file": "360_Images/P2_Inlet.jpg"
+    },
     {
       "scene": "panorama-360",
       "source_files": [
@@ -34,6 +102,448 @@
         "height": 458
       },
       "output_file": "360_Images/panorama-360.jpeg"
+    },
+    {
+      "scene": "Pond1",
+      "source_files": [
+        "Images/Pond1.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1512
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 10,
+      "feature_inlier_count": 2,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 18.639853395061728,
+      "seam_score_after_loop_close": 18.639853395061728,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 18.639853395061728,
+      "seam_score_after_blend": 18.639853395061728,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1512
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1512
+      },
+      "output_file": "360_Images/Pond1.jpg"
+    },
+    {
+      "scene": "Pond1_Outlet_TowardsChannel",
+      "source_files": [
+        "Images/Pond1_Outlet_TowardsChannel.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1478
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 7,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 14.463971583220568,
+      "seam_score_after_loop_close": 14.463971583220568,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 14.463971583220568,
+      "seam_score_after_blend": 14.463971583220568,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1478
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1478
+      },
+      "output_file": "360_Images/Pond1_Outlet_TowardsChannel.jpg"
+    },
+    {
+      "scene": "Pond1_Outlet_TowardsPond",
+      "source_files": [
+        "Images/Pond1_Outlet_TowardsPond.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1544
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 5,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 19.93315522452504,
+      "seam_score_after_loop_close": 19.93315522452504,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 19.93315522452504,
+      "seam_score_after_blend": 19.93315522452504,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1544
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1544
+      },
+      "output_file": "360_Images/Pond1_Outlet_TowardsPond.jpg"
+    },
+    {
+      "scene": "Pond2_Inlet_TowardsPond",
+      "source_files": [
+        "Images/Pond2_Inlet_TowardsPond.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1514
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 4,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 20.242679436371642,
+      "seam_score_after_loop_close": 20.242679436371642,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 20.242679436371642,
+      "seam_score_after_blend": 20.242679436371642,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1514
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1514
+      },
+      "output_file": "360_Images/Pond2_Inlet_TowardsPond.jpg"
+    },
+    {
+      "scene": "Pond2_Outlet_TowardChannel",
+      "source_files": [
+        "Images/Pond2_Outlet_TowardChannel.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1462
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 14,
+      "feature_inlier_count": 2,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 11.984809621523027,
+      "seam_score_after_loop_close": 11.984809621523027,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 11.984809621523027,
+      "seam_score_after_blend": 11.984809621523027,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1462
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1462
+      },
+      "output_file": "360_Images/Pond2_Outlet_TowardChannel.jpg"
+    },
+    {
+      "scene": "Pond2_Outlet_TowardsPond",
+      "source_files": [
+        "Images/Pond2_Outlet_TowardsPond.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1432
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 4,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 21.653660381750466,
+      "seam_score_after_loop_close": 21.653660381750466,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 21.653660381750466,
+      "seam_score_after_blend": 21.653660381750466,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1432
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1432
+      },
+      "output_file": "360_Images/Pond2_Outlet_TowardsPond.jpg"
+    },
+    {
+      "scene": "Pond3",
+      "source_files": [
+        "Images/Pond3.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1504
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 12,
+      "feature_inlier_count": 2,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 24.27158133865248,
+      "seam_score_after_loop_close": 24.27158133865248,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 24.27158133865248,
+      "seam_score_after_blend": 24.27158133865248,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1504
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1504
+      },
+      "output_file": "360_Images/Pond3.jpg"
+    },
+    {
+      "scene": "Pond3_Inlet",
+      "source_files": [
+        "Images/Pond3_Inlet.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1468
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 7,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 11.45691416893733,
+      "seam_score_after_loop_close": 11.45691416893733,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 11.45691416893733,
+      "seam_score_after_blend": 11.45691416893733,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1468
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1468
+      },
+      "output_file": "360_Images/Pond3_Inlet.jpg"
+    },
+    {
+      "scene": "Pond3_Outlet_TowardsConnection",
+      "source_files": [
+        "Images/Pond3_Outlet_TowardsConnection.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1476
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 5,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 15.324130532971996,
+      "seam_score_after_loop_close": 15.324130532971996,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 15.324130532971996,
+      "seam_score_after_blend": 15.324130532971996,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1476
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1476
+      },
+      "output_file": "360_Images/Pond3_Outlet_TowardsConnection.jpg"
+    },
+    {
+      "scene": "Pond3_Outlet_TowardsPond",
+      "source_files": [
+        "Images/Pond3_Outlet_TowardsPond.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1536
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 6,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 23.976725260416668,
+      "seam_score_after_loop_close": 23.976725260416668,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 23.976725260416668,
+      "seam_score_after_blend": 23.976725260416668,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1536
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1536
+      },
+      "output_file": "360_Images/Pond3_Outlet_TowardsPond.jpg"
+    },
+    {
+      "scene": "Pond4_Inlet",
+      "source_files": [
+        "Images/Pond4_Inlet.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1518
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 5,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 18.72296332894159,
+      "seam_score_after_loop_close": 18.72296332894159,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 18.72296332894159,
+      "seam_score_after_blend": 18.72296332894159,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1518
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1518
+      },
+      "output_file": "360_Images/Pond4_Inlet.jpg"
+    },
+    {
+      "scene": "Pond4_Outlet_TowardsChannel",
+      "source_files": [
+        "Images/Pond4_Outlet_TowardsChannel.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1488
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 14,
+      "feature_inlier_count": 2,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 10.768453181003585,
+      "seam_score_after_loop_close": 10.768453181003585,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 10.768453181003585,
+      "seam_score_after_blend": 10.768453181003585,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1488
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1488
+      },
+      "output_file": "360_Images/Pond4_Outlet_TowardsChannel.jpg"
+    },
+    {
+      "scene": "Pond4_Outlet_TowardsPond",
+      "source_files": [
+        "Images/Pond4_Outlet_TowardsPond.jpg"
+      ],
+      "stitch_mode": "single",
+      "crop_box": {
+        "x": 0,
+        "y": 0,
+        "width": 5120,
+        "height": 1484
+      },
+      "removed_overlap_px": 0,
+      "overlap_vertical_shift_px": 0,
+      "loop_close_applied": false,
+      "feature_match_count": 5,
+      "feature_inlier_count": 0,
+      "feature_confidence": 0.0,
+      "seam_score_before_loop_close": 19.552841419586702,
+      "seam_score_after_loop_close": 19.552841419586702,
+      "seam_vertical_shift_px": 0,
+      "seam_score_after_alignment": 19.552841419586702,
+      "seam_score_after_blend": 19.552841419586702,
+      "passthrough_copy": true,
+      "source_size": {
+        "width": 5120,
+        "height": 1484
+      },
+      "output_size": {
+        "width": 5120,
+        "height": 1484
+      },
+      "output_file": "360_Images/Pond4_Outlet_TowardsPond.jpg"
     }
   ]
 }
