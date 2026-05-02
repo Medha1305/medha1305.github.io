@@ -266,9 +266,29 @@
 }
 
 @media (max-width: 480px) {
+    .research-variant-page .page-hero-copy h1 {
+        font-size: 2.15rem;
+        line-height: 1.08;
+        letter-spacing: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .variant-title {
+        font-size: 1.8rem;
+        letter-spacing: 0;
+        overflow-wrap: anywhere;
+    }
+
     .research-variant-section {
         padding-top: 4rem;
         padding-bottom: 4.5rem;
+    }
+
+    .research-multi-grid,
+    .research-multi-card,
+    .research-card-viewer,
+    .research-controls-icon {
+        min-width: 0;
     }
 
     .research-multi-card {

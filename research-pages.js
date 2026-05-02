@@ -178,8 +178,10 @@
             rootMargin: "260px 0px"
         });
 
+        const eagerViewerCount = window.matchMedia("(max-width: 768px)").matches ? 1 : 3;
+
         cards.forEach((card, index) => {
-            if (index < 3) {
+            if (index < eagerViewerCount) {
                 initializeCard(card);
                 return;
             }

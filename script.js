@@ -173,6 +173,7 @@ class PanoramaViewer {
         this.program = null;
         this.vertexBuffer = null;
         this.texture = null;
+        this.textureSource = null;
         this.positionAttribute = null;
         this.textureUniform = null;
         this.aspectUniform = null;
@@ -279,7 +280,7 @@ class PanoramaViewer {
             this.pitch = this.clampPitch(this.pitch);
 
             if (!this.uploadTexture()) {
-                this.showError("The panorama could not be prepared for viewing.");
+                this.initializeFallbackImage();
                 return;
             }
 
@@ -314,6 +315,7 @@ class PanoramaViewer {
     setLoadingState() {
         this.initialized = false;
         this.stopAutoRotateLoop();
+        this.textureSource = null;
         this.sourceWidth = 0;
         this.sourceHeight = 0;
         this.defaultPitch = 0;
@@ -527,8 +529,54 @@ class PanoramaViewer {
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR);
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
         this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, 0);
-        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, this.image);
-        return true;
+        this.clearGlErrors();
+        this.textureSource = this.getTextureSource();
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, this.textureSource);
+
+        return this.gl.getError() === this.gl.NO_ERROR;
+    }
+
+    clearGlErrors() {
+        if (!this.gl) {
+            return;
+        }
+
+        while (this.gl.getError() !== this.gl.NO_ERROR) {
+            // Drain stale errors before checking the texture upload result.
+        }
+    }
+
+    getTextureSource() {
+        if (!this.gl || !this.image) {
+            return this.image;
+        }
+
+        const maxTextureSize = this.gl.getParameter(this.gl.MAX_TEXTURE_SIZE) || 4096;
+        const touchDevice = navigator.maxTouchPoints > 0;
+        const textureLimit = Math.max(1024, Math.min(maxTextureSize, touchDevice ? 4096 : maxTextureSize));
+        const sourceWidth = this.image.naturalWidth || this.image.width;
+        const sourceHeight = this.image.naturalHeight || this.image.height;
+        const largestSide = Math.max(sourceWidth, sourceHeight);
+
+        if (!sourceWidth || !sourceHeight || largestSide <= textureLimit) {
+            return this.image;
+        }
+
+        const scale = textureLimit / largestSide;
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(sourceWidth * scale));
+        canvas.height = Math.max(1, Math.round(sourceHeight * scale));
+
+        const context = canvas.getContext("2d", { alpha: false });
+        if (!context) {
+            return this.image;
+        }
+
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = "high";
+        context.drawImage(this.image, 0, 0, canvas.width, canvas.height);
+
+        return canvas;
     }
 
     refreshMetrics() {
