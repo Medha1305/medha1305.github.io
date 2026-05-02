@@ -2,10 +2,24 @@
 // Smooth Scrolling Navigation
 // ===========================
 
+function getSafeHashTarget(href) {
+    const hash = String(href || "");
+    if (!hash.startsWith("#") || hash.length < 2) {
+        return null;
+    }
+
+    const id = hash.slice(1);
+    if (!/^[A-Za-z][A-Za-z0-9_-]*$/.test(id)) {
+        return null;
+    }
+
+    return document.getElementById(id);
+}
+
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (event) {
         event.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
+        const target = getSafeHashTarget(this.getAttribute("href"));
 
         if (!target) {
             return;
@@ -67,7 +81,7 @@ const navMenu = document.querySelector(".nav-menu");
 
 if (hamburger && navMenu) {
     hamburger.addEventListener("click", () => {
-        navMenu.style.display = navMenu.style.display === "flex" ? "none" : "flex";
+        navMenu.classList.toggle("is-open");
     });
 }
 
@@ -79,6 +93,68 @@ const PANORAMA_TURN = Math.PI * 2;
 const HALF_TURN = Math.PI;
 const DEG_TO_RAD = Math.PI / 180;
 
+function getSafeLocalImagePath(value, fallback = "Images/panorama-360.jpeg") {
+    const imagePath = String(value || "");
+    const isAllowedImage = /^(?:\.\.\/)?(?:Images|360_Images)\/[A-Za-z0-9_.-]+\.(?:jpe?g|png|webp)$/i.test(imagePath);
+
+    return isAllowedImage ? imagePath : fallback;
+}
+
+function getSafeIconClass(value, fallback = "research-control-icon") {
+    const className = String(value || "");
+
+    return /^[A-Za-z][A-Za-z0-9_-]*$/.test(className) ? className : fallback;
+}
+
+function createSvgElement(tagName, attributes = {}) {
+    const element = document.createElementNS("http://www.w3.org/2000/svg", tagName);
+
+    Object.entries(attributes).forEach(([name, value]) => {
+        element.setAttribute(name, value);
+    });
+
+    return element;
+}
+
+function createRotationIcon(isAutoRotating, iconClass) {
+    const svg = createSvgElement("svg", {
+        class: iconClass,
+        viewBox: "0 0 24 24",
+        "aria-hidden": "true"
+    });
+
+    if (isAutoRotating) {
+        svg.append(
+            createSvgElement("rect", {
+                x: "7",
+                y: "5",
+                width: "3.5",
+                height: "14",
+                rx: "1.2",
+                fill: "currentColor",
+                stroke: "none"
+            }),
+            createSvgElement("rect", {
+                x: "13.5",
+                y: "5",
+                width: "3.5",
+                height: "14",
+                rx: "1.2",
+                fill: "currentColor",
+                stroke: "none"
+            })
+        );
+    } else {
+        svg.append(createSvgElement("path", {
+            d: "M8 6.5v11l8.5-5.5z",
+            fill: "currentColor",
+            stroke: "none"
+        }));
+    }
+
+    return svg;
+}
+
 class PanoramaViewer {
     constructor(containerId, imagePath) {
         this.container = document.getElementById(containerId);
@@ -86,7 +162,7 @@ class PanoramaViewer {
             return;
         }
 
-        this.imagePath = imagePath;
+        this.imagePath = getSafeLocalImagePath(imagePath);
         this.initialized = false;
         this.usingFallbackImage = false;
         this.image = null;
@@ -258,27 +334,29 @@ class PanoramaViewer {
             return;
         }
 
-        this.imagePath = imagePath;
+        this.imagePath = getSafeLocalImagePath(imagePath, this.imagePath);
         this.loadCounter += 1;
         this.image.dataset.loadCounter = String(this.loadCounter);
         this.setLoadingState();
-        this.image.src = imagePath;
+        this.image.src = this.imagePath;
     }
 
     setImage(imagePath) {
-        if (!imagePath || imagePath === this.imagePath) {
+        const safeImagePath = getSafeLocalImagePath(imagePath, this.imagePath);
+
+        if (!safeImagePath || safeImagePath === this.imagePath) {
             return;
         }
 
         if (this.usingFallbackImage && this.fallbackImage) {
-            this.imagePath = imagePath;
+            this.imagePath = safeImagePath;
             this.setLoadingState();
             this.initialized = true;
-            this.fallbackImage.src = imagePath;
+            this.fallbackImage.src = safeImagePath;
             return;
         }
 
-        this.loadImage(imagePath);
+        this.loadImage(safeImagePath);
     }
 
     initializeGlProgram() {
@@ -778,9 +856,8 @@ class PanoramaViewer {
         const buttonLabel = this.autoRotateEnabled ? "Pause Rotation" : "Start Rotation";
 
         if (this.autoRotateButton.dataset.iconOnly === "true") {
-            this.autoRotateButton.innerHTML = this.autoRotateEnabled
-                ? '<svg class="research-control-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1.2" fill="currentColor" stroke="none"></rect><rect x="13.5" y="5" width="3.5" height="14" rx="1.2" fill="currentColor" stroke="none"></rect></svg>'
-                : '<svg class="research-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6.5v11l8.5-5.5z" fill="currentColor" stroke="none"></path></svg>';
+            const iconClass = getSafeIconClass(this.autoRotateButton.dataset.iconClass);
+            this.autoRotateButton.replaceChildren(createRotationIcon(this.autoRotateEnabled, iconClass));
             this.autoRotateButton.setAttribute("aria-label", buttonLabel);
             this.autoRotateButton.setAttribute("title", buttonLabel);
         } else {
@@ -919,11 +996,11 @@ function initializePanoramaScenePicker(viewer) {
     const sceneLink = document.getElementById("panoramaSceneLink");
 
     const selectScene = (button) => {
-        const imagePath = button.dataset.panoramaSrc;
+            const imagePath = getSafeLocalImagePath(button.dataset.panoramaSrc);
 
-        if (imagePath && typeof viewer.setImage === "function") {
-            viewer.setImage(imagePath);
-        }
+            if (imagePath && typeof viewer.setImage === "function") {
+                viewer.setImage(imagePath);
+            }
 
         sceneButtons.forEach((sceneButton) => {
             const isSelected = sceneButton === button;
@@ -1035,15 +1112,12 @@ const observer = new IntersectionObserver((entries) => {
             return;
         }
 
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
+        entry.target.classList.add("is-visible");
         observer.unobserve(entry.target);
     });
 }, observerOptions);
 
 document.querySelectorAll("section").forEach((section) => {
-    section.style.opacity = "0";
-    section.style.transform = "translateY(20px)";
-    section.style.transition = "all 0.6s ease-out";
+    section.classList.add("scroll-reveal");
     observer.observe(section);
 });

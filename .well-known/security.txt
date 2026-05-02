@@ -1,0 +1,3 @@
+Contact: mailto:medha2@newcastle.ac.uk
+Preferred-Languages: en
+Canonical: https://medha1305.github.io/.well-known/security.txt

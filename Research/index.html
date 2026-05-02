@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research | Medha</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,49 +38,35 @@
     <section id="research-page" class="page-hero research-page-hero">
         <div class="container page-hero-layout">
             <div class="page-hero-copy">
-                <p class="section-kicker">Research Version 1</p>
-                <h1>Curated 360 Field Explorer for Offline Pond Monitoring</h1>
-                <p class="page-hero-description">This version keeps one large 360 viewer, improves the visual design, and uses cleaner scene names without showing image extensions.</p>
+                <p class="section-kicker">360 Research Site View</p>
+                <h1>Step Inside My Pond Monitoring Site</h1>
+                <p class="page-hero-description">This page shares 360&deg; views from my field research site, where offline ponds are monitored to understand how nature-based flood management works across real inlet, outlet, and pond locations.</p>
                 <div class="hero-cta">
-                    <a href="#research-app" class="btn btn-primary">Open Explorer</a>
-                    <a href="../index.html#contact" class="btn btn-outline">Get In Touch</a>
-                </div>
-                <div class="research-version-switcher" aria-label="Research page versions">
-                    <a class="is-active" href="../Research/">
-                        <strong>Research</strong>
-                        <span>Single curated viewer</span>
-                    </a>
-                    <a href="../Research_2/">
-                        <strong>Research 2</strong>
-                        <span>Grouped by pond</span>
-                    </a>
-                    <a href="../Research_3/">
-                        <strong>Research 3</strong>
-                        <span>One viewer per image</span>
-                    </a>
+                    <a href="#research-app" class="btn btn-primary">View Research Site</a>
+                    <a href="../index.html#research" class="btn btn-outline">Project Context</a>
                 </div>
             </div>
 
             <aside class="page-hero-aside">
                 <div class="page-hero-card">
-                    <p class="page-hero-label">Why This Version</p>
-                    <h2>A cleaner, easier way to compare field viewpoints</h2>
-                    <p>The scene cards now use names without file extensions, and the main viewer is paired with filters so visitors can move quickly between ponds.</p>
+                    <p class="page-hero-label">Field Evidence</p>
+                    <h2>A visual record of the monitored pond system</h2>
+                    <p>The 360&deg; scenes document the key field positions used to observe pond behaviour, flow pathways, and monitoring conditions across the research site.</p>
                     <ul class="page-hero-points">
-                        <li>Cleaner scene names without file extensions</li>
-                        <li>Large 360 viewer with focused details</li>
-                        <li>Quick pond filters for easier browsing</li>
+                        <li>Inlet, outlet, and pond overview locations</li>
+                        <li>Field context for offline pond monitoring</li>
+                        <li>Interactive views for exploring the research site</li>
                     </ul>
                 </div>
             </aside>
         </div>
     </section>
 
-    <div id="research-app" class="research-variant-section">
+    <main id="research-app" class="research-variant-section">
         <div class="container">
-            <div id="researchAppV1"></div>
+            <div id="researchApp"></div>
         </div>
-    </div>
+    </main>
 
     <footer class="footer">
         <div class="container">

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medha - Hydrology & Flood Management Research</title>
     <link rel="stylesheet" href="styles.css">
@@ -307,13 +309,39 @@
                         </div>
                     </div>
                     <div class="panorama-controls">
-                        <p>Drag to look around, use the mouse wheel or pinch to zoom, and switch to fullscreen for a more immersive view. Arrow keys also work when the viewer is focused, and the panorama resumes automatic rotation after a short pause.</p>
+                        <p>Use the icons to pause rotation, zoom, reset, or open fullscreen. You can also drag, scroll, pinch, or use arrow keys when the viewer is focused.</p>
                         <div class="panorama-actions">
-                            <button id="autoRotateBtn" type="button" class="btn btn-small" aria-pressed="true">Pause Rotation</button>
-                            <button id="zoomInBtn" type="button" class="btn btn-small">Zoom In</button>
-                            <button id="zoomOutBtn" type="button" class="btn btn-small">Zoom Out</button>
-                            <button id="resetBtn" type="button" class="btn btn-small">Reset View</button>
-                            <button id="fullscreenBtn" type="button" class="btn btn-small">Fullscreen</button>
+                            <button id="autoRotateBtn" type="button" class="btn btn-small" data-icon-only="true" data-icon-class="panorama-control-icon" aria-label="Pause rotation" title="Pause rotation" aria-pressed="true">
+                                <svg class="panorama-control-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="7" y="5" width="3.5" height="14" rx="1.2" fill="currentColor" stroke="none"></rect>
+                                    <rect x="13.5" y="5" width="3.5" height="14" rx="1.2" fill="currentColor" stroke="none"></rect>
+                                </svg>
+                            </button>
+                            <button id="zoomInBtn" type="button" class="btn btn-small" aria-label="Zoom in" title="Zoom in">
+                                <svg class="panorama-control-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle cx="10" cy="10" r="5.5"></circle>
+                                    <path d="M10 7.3v5.4M7.3 10h5.4"></path>
+                                    <path d="M14.6 14.6 19 19"></path>
+                                </svg>
+                            </button>
+                            <button id="zoomOutBtn" type="button" class="btn btn-small" aria-label="Zoom out" title="Zoom out">
+                                <svg class="panorama-control-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle cx="10" cy="10" r="5.5"></circle>
+                                    <path d="M7.3 10h5.4"></path>
+                                    <path d="M14.6 14.6 19 19"></path>
+                                </svg>
+                            </button>
+                            <button id="resetBtn" type="button" class="btn btn-small" aria-label="Reset view" title="Reset view">
+                                <svg class="panorama-control-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M6 8V4m0 0h4M6 4l3.2 3.2"></path>
+                                    <path d="M7 14.2A6 6 0 1 0 11.8 6"></path>
+                                </svg>
+                            </button>
+                            <button id="fullscreenBtn" type="button" class="btn btn-small" aria-label="Fullscreen" title="Fullscreen">
+                                <svg class="panorama-control-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4"></path>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -453,13 +481,13 @@
                         <p>medha2@newcastle.ac.uk</p>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/medhahydro/" target="_blank" class="contact-card">
+                    <a href="https://www.linkedin.com/in/medhahydro/" target="_blank" rel="noopener noreferrer" class="contact-card">
                         <span class="contact-icon">&#128188;</span>
                         <h3>LinkedIn</h3>
                         <p>medhahydro</p>
                     </a>
 
-                    <a href="https://github.com/medha1305" target="_blank" class="contact-card">
+                    <a href="https://github.com/medha1305" target="_blank" rel="noopener noreferrer" class="contact-card">
                         <span class="contact-icon">&#128279;</span>
                         <h3>GitHub</h3>
                         <p>medha1305</p>

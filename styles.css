@@ -848,16 +848,36 @@ body {
 }
 
 .panorama-actions {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(3.4rem, 1fr));
     gap: 0.85rem;
-    flex-wrap: wrap;
+    max-width: 520px;
 }
 
 .panorama-actions .btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 3.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 0;
+    border-radius: 16px;
     background: rgba(255, 255, 255, 0.94);
     color: var(--primary);
     border: 1px solid rgba(0, 102, 204, 0.14);
     box-shadow: 0 10px 24px rgba(17, 103, 168, 0.08);
+}
+
+.panorama-control-icon {
+    width: 1.28rem;
+    height: 1.28rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex: 0 0 auto;
 }
 
 .panorama-actions .btn:hover {
@@ -1431,6 +1451,17 @@ body {
     opacity: 0.9;
 }
 
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ===========================
    Responsive Design
    =========================== */
@@ -1457,6 +1488,10 @@ body {
         display: none;
     }
 
+    .nav-menu.is-open {
+        display: flex;
+    }
+
     .hamburger {
         display: flex;
     }
@@ -1480,6 +1515,10 @@ body {
 
     .btn {
         width: 100%;
+    }
+
+    .panorama-actions {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .section-title {
@@ -1606,7 +1645,7 @@ body {
     }
 
     .panorama-actions {
-        flex-direction: column;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .research-page .panorama-viewer-wide {
