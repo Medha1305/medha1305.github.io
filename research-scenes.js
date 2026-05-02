@@ -6,7 +6,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 1",
         location: "Overview",
         direction: "Whole pond",
-        size: "5120 x 1512",
+        size: "5120 x 1512 px",
         src: "../360_Images/Pond1.jpg",
         detail: "Overview of Pond 1, showing the broader pond setting and surrounding field context."
     },
@@ -17,7 +17,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 1",
         location: "Inlet",
         direction: "Towards pond inlet",
-        size: "5120 x 1520",
+        size: "5120 x 1520 px",
         src: "../360_Images/P1_Inlet.jpg",
         detail: "Inlet view for Pond 1, showing the approach into the pond and nearby monitoring context."
     },
@@ -28,7 +28,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 1",
         location: "Outlet",
         direction: "Towards channel",
-        size: "5120 x 1478",
+        size: "5120 x 1478 px",
         src: "../360_Images/Pond1_Outlet_TowardsChannel.jpg",
         detail: "Outlet view from Pond 1 looking towards the channel connection."
     },
@@ -39,7 +39,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 1",
         location: "Outlet",
         direction: "Towards pond",
-        size: "5120 x 1544",
+        size: "5120 x 1544 px",
         src: "../360_Images/Pond1_Outlet_TowardsPond.jpg",
         detail: "Outlet view at Pond 1 looking back towards the pond basin."
     },
@@ -50,7 +50,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 2",
         location: "Inlet",
         direction: "Towards inlet",
-        size: "5120 x 1448",
+        size: "5120 x 1448 px",
         src: "../360_Images/P2_Inlet.jpg",
         detail: "Inlet view for Pond 2, capturing the entry point and surrounding field conditions."
     },
@@ -61,7 +61,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 2",
         location: "Inlet",
         direction: "Towards pond",
-        size: "5120 x 1514",
+        size: "5120 x 1514 px",
         src: "../360_Images/Pond2_Inlet_TowardsPond.jpg",
         detail: "Inlet view at Pond 2 looking towards the pond."
     },
@@ -72,7 +72,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 2",
         location: "Outlet",
         direction: "Toward channel",
-        size: "5120 x 1462",
+        size: "5120 x 1462 px",
         src: "../360_Images/Pond2_Outlet_TowardChannel.jpg",
         detail: "Outlet view from Pond 2 looking toward the downstream channel."
     },
@@ -83,7 +83,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 2",
         location: "Outlet",
         direction: "Towards pond",
-        size: "5120 x 1432",
+        size: "5120 x 1432 px",
         src: "../360_Images/Pond2_Outlet_TowardsPond.jpg",
         detail: "Outlet view at Pond 2 looking back towards the pond."
     },
@@ -94,7 +94,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 3",
         location: "Overview",
         direction: "Whole pond",
-        size: "5120 x 1504",
+        size: "5120 x 1504 px",
         src: "../360_Images/Pond3.jpg",
         detail: "Overview of Pond 3, showing the pond setting and broader field context."
     },
@@ -105,7 +105,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 3",
         location: "Inlet",
         direction: "Towards inlet",
-        size: "5120 x 1468",
+        size: "5120 x 1468 px",
         src: "../360_Images/Pond3_Inlet.jpg",
         detail: "Inlet view for Pond 3, showing the approach into the pond system."
     },
@@ -116,7 +116,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 3",
         location: "Outlet",
         direction: "Towards connection",
-        size: "5120 x 1476",
+        size: "5120 x 1476 px",
         src: "../360_Images/Pond3_Outlet_TowardsConnection.jpg",
         detail: "Outlet view from Pond 3 looking towards the connection point."
     },
@@ -127,7 +127,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 3",
         location: "Outlet",
         direction: "Towards pond",
-        size: "5120 x 1536",
+        size: "5120 x 1536 px",
         src: "../360_Images/Pond3_Outlet_TowardsPond.jpg",
         detail: "Outlet view at Pond 3 looking back towards the pond."
     },
@@ -138,7 +138,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 4",
         location: "Inlet",
         direction: "Towards inlet",
-        size: "5120 x 1518",
+        size: "5120 x 1518 px",
         src: "../360_Images/Pond4_Inlet.jpg",
         detail: "Inlet view for Pond 4, capturing the approach into the pond."
     },
@@ -149,7 +149,7 @@ window.RESEARCH_SCENES = [
         pond: "Pond 4",
         location: "Outlet",
         direction: "Towards channel",
-        size: "5120 x 1488",
+        size: "5120 x 1488 px",
         src: "../360_Images/Pond4_Outlet_TowardsChannel.jpg",
         detail: "Outlet view from Pond 4 looking towards the channel."
     },
@@ -160,8 +160,10 @@ window.RESEARCH_SCENES = [
         pond: "Pond 4",
         location: "Outlet",
         direction: "Towards pond",
-        size: "5120 x 1484",
+        size: "5120 x 1484 px",
         src: "../360_Images/Pond4_Outlet_TowardsPond.jpg",
         detail: "Outlet view at Pond 4 looking back towards the pond."
     }
 ];
+
+
