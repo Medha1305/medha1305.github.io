@@ -582,9 +582,11 @@ body {
 }
 
 .research-info h3 {
-    font-size: 1.8rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     color: var(--primary);
     margin-bottom: 0.5rem;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
 }
 
 .research-date {
@@ -602,16 +604,74 @@ body {
 }
 
 .research-page-entry {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.25rem;
+    align-items: center;
     margin-bottom: 2rem;
-    padding: 1.35rem;
-    border-radius: 18px;
-    background: linear-gradient(180deg, #ffffff 0%, #f3faff 100%);
-    border: 1px solid rgba(0, 102, 204, 0.12);
-    box-shadow: 0 12px 26px rgba(17, 103, 168, 0.08);
+    padding: 1.45rem;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at top right, rgba(0, 176, 204, 0.16), transparent 34%),
+        linear-gradient(135deg, #073e6f 0%, #0b78a6 100%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 18px 36px rgba(7, 62, 111, 0.18);
 }
 
 .research-page-entry p {
-    margin-bottom: 1rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.65;
+    text-align: left;
+}
+
+.research-page-label {
+    display: inline-block;
+    margin-bottom: 0.45rem;
+    color: #d8f7ff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.research-page-entry .btn {
+    width: auto;
+    white-space: nowrap;
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 14px 28px rgba(4, 21, 36, 0.16);
+}
+
+.research-page-entry .btn:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.research-stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+}
+
+.research-stat-strip span {
+    padding: 0.95rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(0, 102, 204, 0.1);
+    color: var(--text-light);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 10px 22px rgba(17, 103, 168, 0.06);
+}
+
+.research-stat-strip strong {
+    display: block;
+    color: var(--primary);
+    font-size: 1.45rem;
+    line-height: 1.1;
 }
 
 .research-highlights {
@@ -655,10 +715,12 @@ body {
 }
 
 .panorama-section {
-    background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
-    border: 1px solid rgba(0, 102, 204, 0.12);
-    border-radius: 24px;
-    box-shadow: 0 18px 40px rgba(17, 103, 168, 0.12);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(0, 176, 204, 0.12), transparent 35%),
+        linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
+    border: 1px solid rgba(0, 102, 204, 0.14);
+    border-radius: 30px;
+    box-shadow: 0 24px 56px rgba(17, 103, 168, 0.16);
     overflow: hidden;
 }
 
@@ -693,6 +755,13 @@ body {
     color: var(--primary);
     font-size: 0.85rem;
     font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.panorama-status:hover {
+    background: rgba(0, 168, 204, 0.16);
+    transform: translateY(-2px);
 }
 
 .panorama-caption {
@@ -894,6 +963,27 @@ body {
     background: linear-gradient(135deg, #0051a8 0%, #0077c8 100%);
     color: white;
     border-color: transparent;
+}
+
+.panorama-full-link {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #0051a8 0%, #0077c8 100%);
+    color: white;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 14px 28px rgba(17, 103, 168, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panorama-full-link:hover {
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(17, 103, 168, 0.22);
 }
 
 .other-projects {
@@ -1481,6 +1571,14 @@ body {
     .scene-detail-panel {
         position: static;
     }
+
+    .research-page-entry {
+        grid-template-columns: 1fr;
+    }
+
+    .research-page-entry .btn {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1519,6 +1617,10 @@ body {
 
     .panorama-actions {
         grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .research-stat-strip {
+        grid-template-columns: 1fr;
     }
 
     .section-title {
